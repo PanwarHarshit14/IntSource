@@ -7,9 +7,16 @@
         </button>
 
         {{-- Modal Header --}}
-        <div class="mb-5 pr-8">
-            <h3 class="font-display text-2xl font-bold tracking-tight text-white sm:text-[26px]">Student Registration</h3>
-            <p class="mt-1 text-xs sm:text-sm text-mu">Select your specialized program and fill in your details to secure your admission seat.</p>
+        <div class="mb-5 flex items-center gap-3.5 pr-8">
+            @if(!empty($contact?->logo))
+                <img src="{{ $contact->logo }}" alt="{{ $contact?->name ?? 'IntSource' }}" class="size-11 shrink-0 rounded-xl object-contain shadow-sm">
+            @else
+                <span class="mark !size-11 shrink-0"></span>
+            @endif
+            <div>
+                <h3 class="font-display text-2xl font-bold tracking-tight text-white sm:text-[26px]">Student Registration</h3>
+                <p class="mt-0.5 text-xs sm:text-sm text-mu">Select your specialized program and fill in your details to secure your admission seat.</p>
+            </div>
         </div>
 
         {{-- Registration Form Content --}}

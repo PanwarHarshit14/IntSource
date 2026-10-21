@@ -6,11 +6,13 @@ use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EnquiryController as AdminEnquiryController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
+use App\Http\Controllers\Admin\PageController as AdminPageController;
 use App\Http\Controllers\Admin\RegisterController as AdminRegisterController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 // Web Controllers
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\PageController;
 use App\Http\Controllers\Web\RegisterController;
 // Middlewares
 use App\Http\Middleware\AdminMiddleware;
@@ -45,6 +47,8 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
         Route::post('/enquiry/bulk-delete', [AdminEnquiryController::class, 'bulkDelete'])->name('enquiry.bulk-delete');
         Route::post('/service/bulk-delete', [AdminServiceController::class, 'bulkDelete'])->name('service.bulk-delete');
         Route::post('/registration/bulk-delete', [AdminRegisterController::class, 'bulkDelete'])->name('register.bulk-delete');
+        Route::post('/page/bulk-delete', [AdminPageController::class, 'bulkDelete'])->name('page.bulk-delete');
+        Route::delete('/page/{id}/remove-image', [AdminPageController::class, 'removeImage'])->name('page.remove-image');
 
         // Certificate Route
         Route::get('/certificate/{register?}', [AdminRegisterController::class, 'certificate'])->name('register.certificate');
@@ -56,6 +60,7 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
             'faq' => AdminFaqController::class,
             'service' => AdminServiceController::class,
             'register' => AdminRegisterController::class,
+            'page' => AdminPageController::class,
         ]);
     });
 });
@@ -64,3 +69,4 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/online-registration', [RegisterController::class, 'store'])->name('register.post')->middleware(ProtectAgainstSpam::class);
 Route::post('/enquiry', [ContactController::class, 'sendmail'])->name('enquiry.mail')->middleware(ProtectAgainstSpam::class);
+Route::get('/{slug}', [PageController::class, 'index'])->name('page');

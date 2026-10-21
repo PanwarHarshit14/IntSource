@@ -260,7 +260,7 @@
                                             <a href="https://wa.me/{{ $cleanPhone }}"
                                                target="_blank"
                                                rel="noopener noreferrer"
-                                               class="grid size-5 place-items-center rounded bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-[#04130D] transition"
+                                               class="grid size-5 place-items-center rounded bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-white transition"
                                                title="Chat on WhatsApp">
                                                 <i class="ri-whatsapp-line text-xs"></i>
                                             </a>
@@ -452,7 +452,7 @@
                                             <a href="https://wa.me/{{ $cleanPhone }}"
                                                target="_blank"
                                                rel="noopener noreferrer"
-                                               class="inline-flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-400 hover:bg-emerald-500 hover:text-[#04130D] transition">
+                                               class="inline-flex items-center gap-1 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-400 hover:bg-emerald-500 hover:text-white transition">
                                                 <i class="ri-whatsapp-line text-xs"></i>
                                                 <span>WhatsApp</span>
                                             </a>

@@ -2,34 +2,46 @@
     <div class="wrap">
         <div class="rv grid overflow-hidden rounded-[24px] border border-line sm:rounded-[32px] lg:grid-cols-2">
             <!-- Left Info Card -->
-            <div class="relative flex flex-col justify-between gap-10 overflow-hidden bg-ac p-8 text-[#04130D] sm:p-14">
-                <div class="pointer-events-none absolute -right-[90px] -top-[90px] size-[280px] animate-[spin_40s_linear_infinite] rounded-full border-2 border-dashed border-[#04130D]/30"></div>
+            <div class="relative flex flex-col justify-between gap-10 overflow-hidden bg-ac p-8 text-white sm:p-14">
+                <div class="pointer-events-none absolute -right-[90px] -top-[90px] size-[280px] animate-[spin_40s_linear_infinite] rounded-full border-2 border-dashed border-white/20"></div>
                 <div class="relative">
-                    <div class="eyebrow !text-[#0B3626]">Contact</div>
-                    <h2 class="h2 lg:!text-[46px]">Have an idea? Let's build it together.</h2>
-                    <p class="mt-5 text-lg text-[#0B3626]">Tell us about your project and we'll come back with a plan, a timeline, and a clear next step.</p>
+                    <div class="eyebrow !text-blue-200">Contact</div>
+                    <h2 class="h2 lg:!text-[46px] text-white">Have an idea? Let's build it together.</h2>
+                    <p class="mt-5 text-lg text-slate-200">Tell us about your project and we'll come back with a plan, a timeline, and a clear next step.</p>
                 </div>
 
                 <div class="cl relative grid gap-3.5 font-medium">
                     @php
-                        $contactEmail = $contact->email ?? 'hello@intsource.com';
-                        $primaryPhone = (!empty($contact->phones) && is_array($contact->phones) && count($contact->phones) > 0) ? $contact->phones[0] : '+1 (800) 555-0199';
+                        $contactEmail = $contact?->email ?? 'hello@intsource.com';
+                        $validPhones = array_values(array_filter($contact?->phones ?? [], fn($p) => !empty($p)));
+                        $primaryPhone = !empty($validPhones) ? $validPhones[0] : '+1 (800) 555-0199';
                         $cleanPhone = preg_replace('/[^0-9+]/', '', (string)$primaryPhone);
-                        $contactAddress = $contact->address ?? 'San Francisco, CA & Remote Worldwide';
+                        $contactAddress = $contact?->address ?? 'San Francisco, CA & Remote Worldwide';
+                        $mapLink = 'https://www.google.com/maps/search/?api=1&query=' . urlencode($contactAddress);
                     @endphp
 
                     <a href="mailto:{{ $contactEmail }}" class="flex items-center gap-3.5 transition-opacity hover:opacity-80">
                         <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
                         <span>{{ $contactEmail }}</span>
                     </a>
-                    <a href="tel:{{ $cleanPhone }}" class="flex items-center gap-3.5 transition-opacity hover:opacity-80">
-                        <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
-                        <span>{{ $primaryPhone }}</span>
-                    </a>
-                    <span class="flex items-center gap-3.5">
+                    @if(!empty($validPhones))
+                        @foreach($validPhones as $phone)
+                            @php $pClean = preg_replace('/[^0-9+]/', '', (string)$phone); @endphp
+                            <a href="tel:{{ $pClean }}" class="flex items-center gap-3.5 transition-opacity hover:opacity-80">
+                                <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+                                <span>{{ $phone }}</span>
+                            </a>
+                        @endforeach
+                    @else
+                        <a href="tel:{{ $cleanPhone }}" class="flex items-center gap-3.5 transition-opacity hover:opacity-80">
+                            <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+                            <span>{{ $primaryPhone }}</span>
+                        </a>
+                    @endif
+                    <a href="{{ $mapLink }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3.5 transition-opacity hover:opacity-80">
                         <svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
                         <span>{{ $contactAddress }}</span>
-                    </span>
+                    </a>
                 </div>
 
                 <a class="btn btn-d group relative max-sm:justify-center max-sm:self-stretch" href="#enquiry">
@@ -44,13 +56,13 @@
                 <p class="mb-7 mt-2 text-[15px] text-mu">We usually reply within 24 business hours.</p>
 
                 @if(session('success'))
-                    <div class="mb-6 flex items-start gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-emerald-300">
-                        <svg class="mt-0.5 size-5 shrink-0 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="mb-6 flex items-start gap-3 rounded-xl border border-[#0c2454]/60 bg-[#0c2454]/30 p-4 text-blue-200">
+                        <svg class="mt-0.5 size-5 shrink-0 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
                         <div class="text-sm">
-                            <p class="font-semibold text-emerald-200">{{ session('success') }}</p>
+                            <p class="font-semibold text-white">{{ session('success') }}</p>
                         </div>
                     </div>
                 @endif

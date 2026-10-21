@@ -1,8 +1,12 @@
 <header class="sticky top-[env(safe-area-inset-top,0px)] z-50 border-b border-line bg-bg/70 backdrop-blur-xl">
     <div class="wrap flex h-[72px] items-center justify-between">
-        <a href="#top" class="flex items-center gap-2.5 font-display text-[22px] font-bold text-[#E8ECF4]">
-            <span class="mark"></span>
-            <span>IntSource</span>
+        <a href="{{ route('home') }}" class="flex items-center gap-2.5 font-display text-[22px] font-bold text-[#E8ECF4]">
+            @if(!empty($contact?->logo))
+                <img src="{{ $contact->logo }}" alt="{{ $contact?->name ?? 'IntSource' }}" class="size-8 rounded-lg object-contain shadow-sm">
+            @else
+                <span class="mark"></span>
+            @endif
+            <span>{{ $contact?->name ?? 'IntSource' }}</span>
         </a>
 
         <nav class="hidden gap-9 text-[15px] text-mu lg:flex">

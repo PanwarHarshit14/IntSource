@@ -52,6 +52,12 @@ class MenuBar extends Component
                 'icon' => 'ri-question-answer-line',
                 'active' => request()->routeIs('admin.faq.*'),
             ],
+            [
+                'label' => 'Pages',
+                'url' => route('admin.page.index'),
+                'icon' => 'ri-pages-line',
+                'active' => request()->routeIs('admin.page.*'),
+            ],
         ];
 
         return view('components.admin.menu-bar', compact('menus'));

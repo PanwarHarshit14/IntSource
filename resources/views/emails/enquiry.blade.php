@@ -8,7 +8,7 @@
 <body style="margin: 0; padding: 24px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #0A0D14; color: #E8ECF4;">
     <div style="max-width: 600px; margin: 0 auto; background-color: #11161F; border: 1px solid #232C3D; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
         <div style="background: linear-gradient(135deg, #171E2B 0%, #11161F 100%); padding: 24px; border-bottom: 1px solid #232C3D;">
-            <h2 style="margin: 0; font-size: 20px; color: #5BF0B5; letter-spacing: -0.02em;">New Inbound Enquiry</h2>
+            <h2 style="margin: 0; font-size: 20px; color: #0c2454; letter-spacing: -0.02em;">New Inbound Enquiry</h2>
             <p style="margin: 6px 0 0 0; font-size: 13px; color: #9AA5BA;">Submitted through the website contact form</p>
         </div>
 
@@ -20,14 +20,14 @@
                 </tr>
                 <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #1c2433; color: #9AA5BA; font-weight: 600;">Phone</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #1c2433; color: #5BF0B5;">
-                        <a href="tel:{{ $phone }}" style="color: #5BF0B5; text-decoration: none;">{{ $phone }}</a>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #1c2433; color: #0c2454;">
+                        <a href="tel:{{ $phone }}" style="color: #0c2454; text-decoration: none;">{{ $phone }}</a>
                     </td>
                 </tr>
                 <tr>
                     <td style="padding: 10px 0; border-bottom: 1px solid #1c2433; color: #9AA5BA; font-weight: 600;">Email</td>
-                    <td style="padding: 10px 0; border-bottom: 1px solid #1c2433; color: #5BF0B5;">
-                        <a href="mailto:{{ $email }}" style="color: #5BF0B5; text-decoration: none;">{{ $email }}</a>
+                    <td style="padding: 10px 0; border-bottom: 1px solid #1c2433; color: #0c2454;">
+                        <a href="mailto:{{ $email }}" style="color: #0c2454; text-decoration: none;">{{ $email }}</a>
                     </td>
                 </tr>
                 <tr>
