@@ -140,28 +140,46 @@
         position: absolute;
         top: 7.2%;
         left: 9.5%;
-        width: 22%;
-        height: 11%;
+        width: 25%;
+        height: 15%;
         object-fit: contain;
         object-position: left center;
       }
 
-      .college-logo {
+      .college-logo-container {
         position: absolute;
-        top: 6.1%;
+        top: 5.5%;
         right: 4.3%;
-        width: 27%;
-        height: 13%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .college-logo {
+        width: auto;
+        height: 30mm;
+        max-height: 15vh;
         object-fit: contain;
-        object-position: right center;
+        display: block;
+      }
+
+      .college-autonomous {
+        margin-top: 1mm;
+        font-family: "Poppins", sans-serif;
+        font-size: 3.50mm;
+        font-weight: 600;
+        color: #09275e; 
+        line-height: 1;
+        white-space: nowrap;
       }
 
       /* Main certificate heading */
       .heading {
         position: absolute;
-        top: 18.3%;
-        left: 0;
-        width: 100%;
+        top: 25mm;
+        left: 50%;
+        transform: translateX(-50%);
         text-align: center;
       }
 
@@ -195,45 +213,56 @@
         background: #d99a00;
       }
 
-      /* Certificate recipient */
-      .presented {
+      .certificate-content {
         position: absolute;
-        top: 35.7%;
+        top: 50%;
         left: 0;
         width: 100%;
+        transform: translateY(-50%);
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 2mm;
+      }
+
+      /* Certificate recipient */
+      .presented {
+        /* position: absolute;
+        top: 35.7%;
+        left: 0;
+        width: 100%; */
         text-align: center;
         font-size: 4mm;
         font-weight: 400;
       }
 
       .student-name {
-        position: absolute;
-        top: 40.1%;
-        left: 50%;
-        width: max-content
-        height: 10.5%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: translateX(-50%);
+        /* position: absolute; */
+        /* top: 40.1%; */
+        /* left: 50%; */
+        /* transform: translateX(-50%); */
+        /* min-width: 65mm; */
+        width: fit-content;
+        padding: 0 5mm;
+        margin: 0 auto;
+        text-align: center;
 
-        font-family: "Dancing Script", cursive;
-        font-size: 13mm;
-        font-weight: 700;
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 21mm;
+        line-height: 21mm;
+        font-weight: bold;
         color: #09275e;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         border-bottom: 0.45mm solid #d99a00;
       }
 
       /* Course completion details */
       .completion {
-        position: absolute;
-        top: 54%;
+        /* position: absolute;
+        top: 50%;
         left: 10%;
-        width: 80%;
+        width: 80%; */
         text-align: center;
         font-size: 3.8mm;
         line-height: 1.55;
@@ -252,11 +281,35 @@
         font-weight: 600;
       }
 
+      /* Training duration line */
+      .training-dates {
+        /* position: absolute;
+        top: 61%;
+        left: 0;
+        width: 100%; */
+        text-align: center;
+      }
+
+      .dates-highlight {
+        display: inline-block;
+        font-size: 4.5mm;
+        color: #09275e;
+        letter-spacing: 0.3mm;
+      }
+
+      .dates-highlight .date-slot {
+        font-weight: bold;
+        color: #09275e;
+        padding: 0 1mm;
+      }
+
       .description {
-        position: absolute;
+        /* position: absolute;
         top: 66.8%;
         left: 12%;
+        width: 76%; */
         width: 76%;
+        margin: 0 auto;
         text-align: center;
         font-size: 3.3mm;
         line-height: 1.6;
@@ -294,7 +347,7 @@
       }
 
       .signature h3 {
-        margin: 2mm 0 0.5mm;
+        margin: 1mm 0 0.5mm;
         font-size: 3.5mm;
         font-weight: 700;
         text-transform: uppercase;
@@ -388,11 +441,14 @@
             alt="Intsource Tech Pvt Ltd"
           />
 
-          <img
-            src="{{ asset('images/aishwarya_logo.png') }}"
-            class="college-logo"
-            alt="Aishwarya College Jodhpur"
-          />
+          <div class="college-logo-container">
+            <img
+              src="{{ asset('images/aishwarya_logo.png') }}"
+              class="college-logo"
+              alt="Aishwarya College Jodhpur"
+            />
+            <div class="college-autonomous">(Autonomous)</div>
+          </div>
 
           <!-- Certificate title -->
           <div class="heading">
@@ -400,31 +456,44 @@
             <div class="subtitle">OF COMPLETION</div>
           </div>
 
-          <!-- Student name -->
-          <div class="presented">This is to certify that</div>
-
-          <div class="student-name">
-            {{ $registration->student_name ?? 'Student Name' }} {{ $registration->gender == "Female" ? "D/o" : "S/o" }} Mr. {{ $registration->father_name }}
-          </div>
-
-          <!-- Course details -->
-          <div class="completion">
-            <p>
-              has successfully completed the
-              <strong>{{ $registration->course ?? '21 Days of Basics of MERN Full Stack' }}</strong>
-            </p>
-
-            <p>Training has been conducted between</p>
-
-            <p class="training-partners">
-              Intsource Tech Pvt Ltd and Aishwarya College, Jodhpur.
-            </p>
-          </div>
-
-          <div class="description">
-            During this training period, the student has gained practical knowledge
-            and hands-on experience in modern web development technologies and
-            development practices.
+          <div class="certificate-content">
+            <!-- Student name -->
+            <div class="presented">This is to certify that</div>
+            <div class="student-name">
+              {{-- {{ $registration->student_name ?? 'Student Name' }} {{ $registration->gender == "Female" ? "D/o" : "S/o" }} Mr. {{ $registration->father_name }} --}}
+              {{ $registration->student_name ?? 'Student Name' }}
+            </div>
+            <!-- Course details -->
+            <div class="completion">
+              <p>
+                has successfully completed the <strong>21 days</strong> training program on
+                {{-- <strong>{{ $registration->course ?? '21 Days of Basics of MERN Full Stack' }}</strong> --}}
+              </p>
+              <div style="font-size: 7mm; font-weight: bold">
+                BASICS OF MERN FULL STACK &amp; INTRODUCTION TO HADOOP
+              </div>
+              <p>conducted by</p>
+              <div style="font-weight: bold; font-size: 5mm">
+                INSOURCE TECH PRIVATE LIMITED, JODHPUR
+              </div>
+              <div>and</div>
+               <div style="font-weight: bold; font-size: 5mm">
+                AISHWARYA COLLEGE OF EDUCATION (AUTONOMOUS), JODHPUR
+              </div>
+              <!-- <p class="training-partners">
+                Intsource Tech Pvt Ltd and Aishwarya College (Autonomous), Jodhpur.
+              </p> -->
+            </div>
+            <!-- Training duration dates (You can enter dates manually between 'from' and 'to') -->
+            <div class="training-dates">
+              <span class="dates-highlight">
+                from <span class="date-slot">05/10/2026</span> to <span class="date-slot">30/10/2026</span>
+              </span>
+            </div>
+            <div class="description">
+              During this training period, the student gained practical knowledge
+              and foundational skills in MERN Full Stack Development, including MongoDB, Express.js, React.js, and Node.js.
+            </div>
           </div>
 
           <!-- Three authorized signatures -->
@@ -433,24 +502,24 @@
               <img src="{{ asset('images/sign1.png') }}" alt="CEO signature" />
               <div class="line"></div>
               <div class="name">Bhumit Kumar</div>
-              <p>Intsource Tech Pvt Ltd</p>
-              <h3>CEO & Founder</h3>
-            </div>
-
-            <div class="signature">
-              <img src="{{ asset('images/sign2.png') }}" alt="Principal signature" />
-              <div class="line"></div>
-              <div class="name">Dr. Rishi Nepaliya</div>
-              <p>Aishwarya College, Jodhpur</p>
-              <h3>Principal</h3>
+              <div style="font-size: 3mm; font-weight: bold">CEO & Founder</div>
+              <p style="font-size: 2mm">Intsource Tech Pvt Ltd</p>
             </div>
 
             <div class="signature">
               <img src="{{ asset('images/sign3.png') }}" alt="Co-ordinator signature" />
               <div class="line"></div>
               <div class="name">Joseph Dickenson</div>
-              <p>Aishwarya College, Jodhpur</p>
-              <h3>Internship Co-ordinator</h3>
+              <div  style="font-size: 3mm; font-weight: bold">Internship Co-ordinator</div>
+              <p style="font-size: 2mm;">Aishwarya College of Education (Autonomous), Jodhpur</p>
+            </div>
+
+            <div class="signature">
+              <img src="{{ asset('images/sign2.png') }}" alt="Principal signature" />
+              <div class="line"></div>
+              <div class="name">Dr. Rishi Nepalia</div>
+              <div style="font-size: 3mm; font-weight: bold">Principal</div>
+              <p style="font-size: 2mm;">Aishwarya College of Education (Autonomous), Jodhpur</p>
             </div>
           </div>
         </div>
