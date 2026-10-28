@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOY_PATH=/home1/rudrarmq/intsourcetech.com/public
+    - /bin/cp -R * $DEPLOY_PATH
+    - /bin/cp -f .htaccess $DEPLOY_PATH 2>/dev/null || true
