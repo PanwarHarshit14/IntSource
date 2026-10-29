@@ -140,8 +140,8 @@
         position: absolute;
         top: 7.2%;
         left: 9.5%;
-        width: 25%;
-        height: 15%;
+        /* width: 25%; */
+        height: 40mm;
         object-fit: contain;
         object-position: left center;
       }
@@ -158,8 +158,8 @@
 
       .college-logo {
         width: auto;
-        height: 30mm;
-        max-height: 15vh;
+        height: 40mm;
+        /* max-height: 15vh; */
         object-fit: contain;
         display: block;
       }
@@ -248,7 +248,7 @@
         text-align: center;
 
         font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-        font-size: 21mm;
+        font-size: 15mm;
         line-height: 21mm;
         font-weight: bold;
         color: #09275e;
@@ -334,8 +334,8 @@
 
       .signature img {
         display: block;
-        width: 45mm;
-        height: 15mm;
+        /* width: 45mm; */
+        height: 20mm;
         object-fit: contain;
         margin: 0 auto -1mm;
       }
@@ -474,7 +474,7 @@
               </div>
               <p>conducted by</p>
               <div style="font-weight: bold; font-size: 5mm">
-                INSOURCE TECH PRIVATE LIMITED, JODHPUR
+                INTSOURCE TECH PRIVATE LIMITED, JODHPUR
               </div>
               <div>and</div>
                <div style="font-weight: bold; font-size: 5mm">
