@@ -33,7 +33,7 @@ class RegisterController extends Controller
             $query->where('course', $request->course);
         }
 
-        $registrations = $query->latest()->paginate(10)->withQueryString();
+        $registrations = $query->latest()->paginate(50)->withQueryString();
 
         $stats = [
             'total' => Register::count(),
