@@ -335,7 +335,7 @@
       .signature img {
         display: block;
         /* width: 45mm; */
-        height: 20mm;
+        height: 15mm;
         object-fit: contain;
         margin: 0 auto -1mm;
       }
